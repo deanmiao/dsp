@@ -20,8 +20,18 @@ Here's a list of items with which you should be familiar:
 
 Make a cheat sheet for yourself: a list of at least **ten** commands and what they do.  (Use the 8 items above and add a couple of your own.)  
 
-> > REPLACE THIS TEXT WITH YOUR RESPONSE
-
+> > 
+* pwd --show current working directory path
+* mkdir --creating a directory
+* rm -r <foldername>/ --deleting a directory
+* touch <fileName> --creating a file using `touch` command
+* rm <fileName> --deleting a file
+* mv filename.txt filename2.txt --renaming a file
+* ls -a --listing hidden files
+* cp image.jpg <folderName>/ --copying a file from one directory to another
+* cd ../../.. --go up certain numbers of levels in a directory
+* cd <folderName> --change directory
+* cd / --go to root
 ---
 
 ### Q2.  List Files in Unix   
@@ -30,12 +40,19 @@ What do the following commands do:
 `ls`  
 `ls -a`  
 `ls -l`  
-`ls -lh`  
-`ls -lah`  
+`ls -lh` 
+`ls -lah` 
 `ls -t`  
 `ls -Glp`  
 
-> > REPLACE THIS TEXT WITH YOUR RESPONSE
+> > 
+`ls`  list files in current directory
+`ls -a`  list all files including hidden files in current directory
+`ls -l`  list certain type of files only "ls -l x.csv"
+`ls -lh` list files in details
+`ls -lah`  list files in details in human readable format
+`ls -t`  sort the list of files by modification time
+`ls -Glp`  long listing append indicators to directories
 
 ---
 
@@ -43,7 +60,13 @@ What do the following commands do:
 
 Explore these other [ls options](http://www.techonthenet.com/unix/basic/ls.php) and pick 5 of your favorites:
 
-> > REPLACE THIS TEXT WITH YOUR RESPONSE
+> > 
+`ls -u` Displays files by the file access time
+`ls -m` Displays the names as a comma-separated list
+`ls -r` Displays files in reverse order
+`ls -t` Displays newest files first. (based on timestamp)
+`ls -1` Displays each entry on a line
+
 
 ---
 
@@ -51,7 +74,9 @@ Explore these other [ls options](http://www.techonthenet.com/unix/basic/ls.php) 
 
 What does `xargs` do? Give an example of how to use it.
 
-> > REPLACE THIS TEXT WITH YOUR RESPONSE
+> > xargs is a command to build and execute commands from standard input
+An example would be to find a specific item using xargs. Xargs executes each space separated command once
+find /path -type f -print | xargs rm
 
  
 
