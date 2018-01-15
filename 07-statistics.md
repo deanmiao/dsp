@@ -69,16 +69,57 @@ Cohen's D is an example of effect size.  Other examples of effect size are:  cor
 
 You will see effect size again and again in results of algorithms that are run in data science.  For instance, in the bootcamp, when you run a regression analysis, you will recognize the t-statistic as an example of effect size.
 
+Calculation on the Cohen D statistic: 
+CohenEffectSize(firsts.totalwgt_lb, others.totalwgt_lb)
+This gives the value of -0.088672927072602006 which is considered to have a small effect size (actual difference)
+
+Mean pregnancy length for first babies is 38.601; for other babies it is 38.523. The difference is 0.078 weeks, which is about 13 hours and 0.2% in difference which means it almost makes no real difference between first and other babies.
+
+
 ### Q2. [Think Stats Chapter 3 Exercise 1](statistics/3-1-actual_biased.md) (actual vs. biased)
 This problem presents a robust example of actual vs biased data.  As a data scientist, it will be important to examine not only the data that is available, but also the data that may be missing but highly relevant.  You will see how the absence of this relevant data will bias a dataset, its distribution, and ultimately, its statistical interpretation.
+
+resp = nsfg.ReadFemResp()
+pmf = thinkstats2.Pmf(resp.numkdhh, label='numkdhh')
+biased = BiasPmf(pmf, label='biased')
+pmf.Mean()
+biased.Mean()
+
+Gives result of pmf.Mean()=1.0242051550438309 and biased.Mean()=2.4036791006642821
+
+Plotting using the code:
+thinkplot.PrePlot(2)
+thinkplot.Pmfs([pmf, biased])
+thinkplot.Config(xlabel='Number of children', ylabel='PMF')
+
+
 
 ### Q3. [Think Stats Chapter 4 Exercise 2](statistics/4-2-random_dist.md) (random distribution)  
 This questions asks you to examine the function that produces random numbers.  Is it really random?  A good way to test that is to examine the pmf and cdf of the list of random numbers and visualize the distribution.  If you're not sure what pmf is, read more about it in Chapter 3.  
 
+Generation of 1000 random number:
+t = np.random.random(1000)
+Plot the numbers
+pmf = thinkstats2.Pmf(t)
+thinkplot.Pmf(pmf, linewidth=0.1)
+thinkplot.Config(xlabel='Random variate', ylabel='PMF')
+cdf = thinkstats2.Cdf(t)
+thinkplot.Cdf(cdf)
+thinkplot.Config(xlabel='Random variate', ylabel='CDF')
+
+From the plot, it seems to be uniform distribution with a rather straight and smooth cdf plot along y=x
+
 ### Q4. [Think Stats Chapter 5 Exercise 1](statistics/5-1-blue_men.md) (normal distribution of blue men)
 This is a classic example of hypothesis testing using the normal distribution.  The effect size used here is the Z-statistic. 
 
+import scipy.stats
+height = 178
+sd = 7.7
+dist = scipy.stats.norm(loc=height, scale=sd)
+type(dist)
+dist.cdf(height-sd)
 
+Around 15.86% of the population is in this range
 
 ### Q5. Bayesian (Elvis Presley twin) 
 
@@ -86,14 +127,14 @@ Bayes' Theorem is an important tool in understanding what we really know, given 
 
 Elvis Presley had a twin brother who died at birth.  What is the probability that Elvis was an identical twin? Assume we observe the following probabilities in the population: fraternal twin is 1/125 and identical twin is 1/300.  
 
->> REPLACE THIS TEXT WITH YOUR RESPONSE
+>> P(ID twin|brother) = P(ID twin and brother)/P(twin) = (1/2 * 1/300) / (1/2 * 1/300 + 1/4 * 1/125) = 5/11
 
 ---
 
 ### Q6. Bayesian &amp; Frequentist Comparison  
 How do frequentist and Bayesian statistics compare?
 
->> REPLACE THIS TEXT WITH YOUR RESPONSE
+>> Bayesian statistics defines probabilities of events while frequentist statistics describes probability as a long run frenquency
 
 ---
 
