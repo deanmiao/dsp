@@ -69,6 +69,11 @@ Cohen's D is an example of effect size.  Other examples of effect size are:  cor
 
 You will see effect size again and again in results of algorithms that are run in data science.  For instance, in the bootcamp, when you run a regression analysis, you will recognize the t-statistic as an example of effect size.
 
+Calculations on the Cohen's D statistic using built-in function gives a result of -0.088672927072602006, which is considered to have small effect size
+CohenEffectSize(firsts.totalwgt_lb, others.totalwgt_lb)
+
+Comparing to the mean pregnancy length differential, which is about 13 hours or 0.2% difference, the effect size of the weight is more likely to be significant while the mean pregnancy length differential is not.
+
 ### Q2. [Think Stats Chapter 3 Exercise 1](statistics/3-1-actual_biased.md) (actual vs. biased)
 This problem presents a robust example of actual vs biased data.  As a data scientist, it will be important to examine not only the data that is available, but also the data that may be missing but highly relevant.  You will see how the absence of this relevant data will bias a dataset, its distribution, and ultimately, its statistical interpretation.
 
@@ -86,15 +91,14 @@ Bayes' Theorem is an important tool in understanding what we really know, given 
 
 Elvis Presley had a twin brother who died at birth.  What is the probability that Elvis was an identical twin? Assume we observe the following probabilities in the population: fraternal twin is 1/125 and identical twin is 1/300.  
 
->> REPLACE THIS TEXT WITH YOUR RESPONSE
+>> P(ID twins|brother) = P(ID twins and brother)/P(twin brother) = (1/2 * 1/300) / (1/2 * 1/300 + 1/4 * 1/125) = 5/11
 
 ---
 
 ### Q6. Bayesian &amp; Frequentist Comparison  
 How do frequentist and Bayesian statistics compare?
 
->> REPLACE THIS TEXT WITH YOUR RESPONSE
-Frequentist
+>> Bayesian statistics describes probability of events with exact probability while frequentist statistic describes probablity as a long term frequency of occurrence of events.
 
 ---
 
