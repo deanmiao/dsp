@@ -69,20 +69,51 @@ Cohen's D is an example of effect size.  Other examples of effect size are:  cor
 
 You will see effect size again and again in results of algorithms that are run in data science.  For instance, in the bootcamp, when you run a regression analysis, you will recognize the t-statistic as an example of effect size.
 
-Calculations on the Cohen's D statistic using built-in function gives a result of -0.088672927072602006, which is considered to have small effect size
+>> Calculations on the Cohen's D statistic using built-in function gives a result of -0.088672927072602006, which is considered to have small effect size
 CohenEffectSize(firsts.totalwgt_lb, others.totalwgt_lb)
 
-Comparing to the mean pregnancy length differential, which is about 13 hours or 0.2% difference, the effect size of the weight is more likely to be significant while the mean pregnancy length differential is not.
+>> Comparing to the mean pregnancy length differential, which is about 13 hours or 0.2% difference, the effect size of the weight is more likely to be significant while the mean pregnancy length differential is not.
 
 ### Q2. [Think Stats Chapter 3 Exercise 1](statistics/3-1-actual_biased.md) (actual vs. biased)
 This problem presents a robust example of actual vs biased data.  As a data scientist, it will be important to examine not only the data that is available, but also the data that may be missing but highly relevant.  You will see how the absence of this relevant data will bias a dataset, its distribution, and ultimately, its statistical interpretation.
 
+>> Using the following code to get to the graphs
+resp = nsfg.ReadFemResp()
+biased = BiasPmf(pmf, label='biased')
+pmf = thinkstats2.Pmf(resp.numkdhh, label='numkdhh')
+thinkplot.PrePlot(2)
+thinkplot.Pmfs([pmf, biased])
+thinkplot.Config(xlabel='Number of children', ylabel='PMF')
+>> Mean Calculation:
+pmf.Mean()=1.0242051550438309
+biased.Mean()=2.4036791006642821
+
 ### Q3. [Think Stats Chapter 4 Exercise 2](statistics/4-2-random_dist.md) (random distribution)  
 This questions asks you to examine the function that produces random numbers.  Is it really random?  A good way to test that is to examine the pmf and cdf of the list of random numbers and visualize the distribution.  If you're not sure what pmf is, read more about it in Chapter 3.  
+
+>> Generate 1000 random numbers
+t = np.random.random(1000)
+>> pmf 
+pmf = thinkstats2.Pmf(t)
+thinkplot.Pmf(pmf, linewidth=0.1)
+thinkplot.Config(xlabel='Random variate', ylabel='PMF')
+>> cdf
+cdf = thinkstats2.Cdf(t)
+thinkplot.Cdf(cdf)
+thinkplot.Config(xlabel='Random variate', ylabel='CDF')
+
+>> The pmf does not provide a clear view on whether or not the distribution is uniform because each random number instance happens by chance. The cdf is rather smooth and straight along y=x, so its likely uniform distribution.
 
 ### Q4. [Think Stats Chapter 5 Exercise 1](statistics/5-1-blue_men.md) (normal distribution of blue men)
 This is a classic example of hypothesis testing using the normal distribution.  The effect size used here is the Z-statistic. 
 
+import scipy.stats
+height = 178
+sd = 7.7
+dist = scipy.stats.norm(loc=height, scale=sd)
+type(dist)
+dist.cdf(height-sd)
+The cdf range of 7.7 gives about 15.87% of the total population.
 
 
 ### Q5. Bayesian (Elvis Presley twin) 
